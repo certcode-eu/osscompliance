@@ -55,7 +55,8 @@ if __name__ == '__main__':
             if no_results:
                 f.writelines("| File       | License(s)     |\n")
                 f.writelines("| ---------- | -------------- |\n")
-            f.writelines(f"| {fp} | {lic} |\n")
+            lic = str(lic)
+            f.writelines(f"| {fp: <{40}} | {lic: <{40}} |\n")
             no_results = False
         if no_results:
             f.writelines("No files identified\n")
