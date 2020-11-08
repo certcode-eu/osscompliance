@@ -11,7 +11,7 @@ in the developpement process, in others well knowned terms ...
 
 
 ## Approach
-The first approach is to build a single and simple compliance report. 
+The first approach is to build a single and simple report. 
 These hooks will build it. It will list licenses and/or open sources files used in and by your code repository.
 
 When `python` and `Software Heritage` hooks are combined, you will discover an new markdown file `OSS_compliance_report.md`
