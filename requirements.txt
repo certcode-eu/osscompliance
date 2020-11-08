@@ -1,0 +1,13 @@
+psycopg2-binary
+Flask==1.1.1
+kafka-python
+websockets
+requests==2.21
+docker
+gunicorn
+aiohttp-jinja2
+python-ldap
+flask-ldap3-login
+flask-simpleldap
+git+https://github.com/dataiku/dataiku-api-client-python#egg=dataiku-api-client
+pymongo==3.10.1
