@@ -67,8 +67,9 @@ This module will scan the pipy cheese shop based on the `requirements.txt` file 
 
 
 ## TODO
-- Create other language modules
+- Notification when report diff detected
 - Use previous results as cache
+- Create other language modules
 
 ## License 
 AGPL 
