@@ -4,7 +4,7 @@ import json
 import urllib.request
 from hashlib import sha1
 from functools import lru_cache
-
+from pathlib import Path
 
 def get(r):
     return json.loads(urllib.request.urlopen(r).read())
@@ -45,18 +45,38 @@ def post_swh():
         if v['known']:
             yield ids[swhid], get_license(swhid)
 
+def md_report():
+    if os.environ.get("OSSCOMPLIANCE_NO_MDREPORT"):
+        return
+    with open("OSS_compliance_report.md", "w") as f:
+        for report in os.listdir(".osscompliance"):
+            with open(os.path.join(".osscompliance", report), 'r') as fr:
+                    f.writelines("# %s report\n" % report.replace(".json", "").capitalize())
+                    f.writelines("| Artefact   | License(s)     |\n")
+                    f.writelines("| ---------- | -------------- |\n")
+                    for k, v in json.load(fr).items():
+                        v = str(v)
+                        f.writelines(f"| {k: <{40}} | {v: <{40}} |\n")
+
 
 if __name__ == '__main__':
-    with open("Software_Heritage_Compliance_Report.md", "w") as f:
-        f.writelines("# Software Heritage Compliance Report\n")
-        f.writelines("## Files already indexed :\n")
-        no_results = True
-        for fp, lic in post_swh():
-            if no_results:
-                f.writelines("| File       | License(s)     |\n")
-                f.writelines("| ---------- | -------------- |\n")
-            lic = str(lic)
-            f.writelines(f"| {fp: <{40}} | {lic: <{40}} |\n")
-            no_results = False
-        if no_results:
-            f.writelines("No files identified\n")
+    Path(".osscompliance").mkdir(exist_ok=True)
+    with open(os.path.join(".osscompliance", "Software Heritage.json"), "w") as f:
+        results = {pkg: str(lic) for pkg, lic in post_swh()}
+        json.dump(results, f, indent=2, sort_keys=True)
+    md_report()
+
+    #
+    # with open("Software_Heritage_Compliance_Report.md", "w") as f:
+    #     f.writelines("# Software Heritage Compliance Report\n")
+    #     f.writelines("## Files already indexed :\n")
+    #     no_results_flag = True
+    #     for fp, lic in post_swh():
+    #         if no_results_flag:
+    #             f.writelines("| File       | License(s)     |\n")
+    #             f.writelines("| ---------- | -------------- |\n")
+    #         lic = str(lic)
+    #         f.writelines(f"| {fp: <{40}} | {lic: <{40}} |\n")
+    #         no_results_flag = False
+    #     if no_results_flag:
+    #         f.writelines("No files identified\n")
