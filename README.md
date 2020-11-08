@@ -49,6 +49,7 @@ If you plan to use severals hooks, take a look at the [`pre-commit` project](htt
 
 You only need a python3 interpreter.
 
+If environment variable `OSSCOMPLIANCE_NO_MDREPORT` is seted, the report is not create.
 
 ### Modules
 

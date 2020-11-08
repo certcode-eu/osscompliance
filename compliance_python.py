@@ -56,11 +56,3 @@ if __name__ == '__main__':
         results = {pkg: lic  for pkg, lic in requirements_licenses_inventory()}
         json.dump(results, f, indent=2, sort_keys=True)
     md_report()
-
-    # with open("Python_Compliance_Report.md", "w") as f:
-    #     f.writelines("# Python Packages Compliance Report\n")
-    #     f.writelines("| Packages   | License(s)     |\n")
-    #     f.writelines("| ---------- | -------------- |\n")
-    #     for pkg, lic  in requirements_licenses_inventory():
-    #         lic = str(lic)
-    #         f.writelines(f"| {pkg: <{40}} | {lic: <{40}} |\n")

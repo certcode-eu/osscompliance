@@ -80,18 +80,3 @@ if __name__ == '__main__':
         results = {pkg: str(lic) for pkg, lic in post_swh()}
         json.dump(results, f, indent=2, sort_keys=True)
     md_report()
-
-    #
-    # with open("Software_Heritage_Compliance_Report.md", "w") as f:
-    #     f.writelines("# Software Heritage Compliance Report\n")
-    #     f.writelines("## Files already indexed :\n")
-    #     no_results_flag = True
-    #     for fp, lic in post_swh():
-    #         if no_results_flag:
-    #             f.writelines("| File       | License(s)     |\n")
-    #             f.writelines("| ---------- | -------------- |\n")
-    #         lic = str(lic)
-    #         f.writelines(f"| {fp: <{40}} | {lic: <{40}} |\n")
-    #         no_results_flag = False
-    #     if no_results_flag:
-    #         f.writelines("No files identified\n")
