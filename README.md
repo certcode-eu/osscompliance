@@ -1,6 +1,6 @@
 # Open Source Sofware Compliance Hooks
 
-## Goals
+## Goal
 As OSS components are used more and more in our development, it is important to
 monitor the compliance of their licenses to avoid errors by mixing incompatible 
 pieces of code as defined by their licenses
